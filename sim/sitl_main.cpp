@@ -3,21 +3,30 @@
 
 #include "control/pitch_rate_controller.hpp"
 #include "plant.hpp"
+#include "input_profile.hpp"
 
 int main()
 {
   constexpr float dt = 0.0002f; // 500 Hz
-  constexpr float sim_time = 5.0f;
+  constexpr float sim_time = 15.0f;
 
   // Controller params
   PitchRateController::Params ctrl_params{
-    .kp = 8.0f,
-    .ki = 8.0f,
+    .kp = 10.0f,
+    .ki = 10.0f,
     .integrator_limit = 0.2f,
     .output_limit = 0.35f
   };
 
   PitchRateController controller (ctrl_params);
+
+  InputProfile q_cmd_profile (0.0f);
+
+  q_cmd_profile.addStepEvent(0.5f, 0.03f);
+
+  q_cmd_profile.addStepEvent(5.0f, -0.01f);
+
+  q_cmd_profile.addStepEvent(12.0f, 0.05f);
 
   // Plant Params
   PitchRatePlant::Params plant_params{
@@ -27,7 +36,7 @@ int main()
 
   PitchRatePlant plant(plant_params);
 
-  std::ofstream log("pitch_rate_sitl8.csv");
+  std::ofstream log("pitch_rate_sitl1.csv");
   log << "time,q_cmd,q_meas,elevator\n";
 
   float q_cmd = 0.0f;
@@ -37,8 +46,9 @@ int main()
  
     // Step Input at t = 0.5s
     if (time > 0.5f) {
-      q_cmd = 0.03f;
+      q_cmd = q_cmd_profile.getValue(time);
     }
+
     
     // Get measured rotation from the plant approximation
     float q_meas = plant.getRate();
@@ -63,4 +73,4 @@ int main()
   log.close();
   std::cout << "SITL COMPLETE.\n";
   return 0;
-}
+};
