@@ -12,8 +12,8 @@ int main()
 
   // Controller params
   PitchRateController::Params ctrl_params{
-    .kp = 10.0f,
-    .ki = 10.0f,
+    .kp = 50.0f,
+    .ki = 50.0f,
     .integrator_limit = 0.2f,
     .output_limit = 0.35f
   };
@@ -22,11 +22,11 @@ int main()
 
   InputProfile q_cmd_profile (0.0f);
 
-  q_cmd_profile.addStepEvent(0.5f, 0.03f);
+  q_cmd_profile.addStep(0.5f, 0.03f);
 
-  q_cmd_profile.addStepEvent(5.0f, -0.01f);
+  q_cmd_profile.addRamp(5.0f, -0.01f);
 
-  q_cmd_profile.addStepEvent(12.0f, 0.05f);
+  q_cmd_profile.addSine(12.0f, 0.05f, 3.0f);
 
   // Plant Params
   PitchRatePlant::Params plant_params{
@@ -36,7 +36,7 @@ int main()
 
   PitchRatePlant plant(plant_params);
 
-  std::ofstream log("pitch_rate_sitl1.csv");
+  std::ofstream log("pitch_rate_sitl2.csv");
   log << "time,q_cmd,q_meas,elevator\n";
 
   float q_cmd = 0.0f;
