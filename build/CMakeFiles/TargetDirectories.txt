@@ -1,0 +1,3 @@
+/home/fawwaz-hameed/code/fawwaz/autopilot/build/CMakeFiles/sitl_main.dir
+/home/fawwaz-hameed/code/fawwaz/autopilot/build/CMakeFiles/edit_cache.dir
+/home/fawwaz-hameed/code/fawwaz/autopilot/build/CMakeFiles/rebuild_cache.dir
