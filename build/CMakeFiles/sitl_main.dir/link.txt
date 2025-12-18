@@ -1,1 +1,0 @@
-/usr/lib/ccache/c++ CMakeFiles/sitl_main.dir/src/control/pitch_rate_controller.cpp.o CMakeFiles/sitl_main.dir/sim/plant.cpp.o CMakeFiles/sitl_main.dir/sim/sitl_main.cpp.o -o sitl_main 
