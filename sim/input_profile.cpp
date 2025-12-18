@@ -1,8 +1,10 @@
 #include "input_profile.hpp"
-#include <vector>
+#include <chrono>
 
 InputProfile::InputProfile(float initial_value)
- : initial_value_(initial_value) {}
+ : initial_value_(initial_value) {
+  rng_.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+}
 
 void InputProfile::addStep(float start_time, float value) {
   events_.push_back( { Type::STEP, start_time, value });
@@ -16,7 +18,13 @@ void InputProfile::addSine(float start_time, float amplitude, float frequency, f
   events_.push_back({ Type::SINE, start_time, amplitude, frequency, offset });
 }
 
-float InputProfile::getValue(float sim_time) const {
+void InputProfile::enableNoise(float stddev) {
+  noise_ = true;
+  gauss_std_ = stddev;
+  gauss_dist_ = std::normal_distribution<float>(0.0f, stddev);
+}
+
+float InputProfile::getValue(float sim_time) {
   float output = initial_value_;
     
   for (const Event& e : events_) {
@@ -34,6 +42,9 @@ float InputProfile::getValue(float sim_time) const {
       }
   }
 }
+  if (noise_) {
+    output += gauss_dist_(rng_);
+  }
   return output;
 }
 

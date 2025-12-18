@@ -7,7 +7,7 @@
 
 int main()
 {
-  constexpr float dt = 0.0002f; // 500 Hz
+  constexpr float dt = 0.002f; // 500 Hz
   constexpr float sim_time = 15.0f;
 
   // Controller params
@@ -27,6 +27,8 @@ int main()
   q_cmd_profile.addRamp(5.0f, -0.01f);
 
   q_cmd_profile.addSine(12.0f, 0.05f, 3.0f);
+
+  q_cmd_profile.enableNoise(0.0005f);
 
   // Plant Params
   PitchRatePlant::Params plant_params{
