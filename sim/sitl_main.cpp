@@ -46,7 +46,7 @@ int main()
 
   PitchRatePlant plant(plant_params);
 
-  std::ofstream log("pitch_rate_sitl2.csv");
+  std::ofstream log("pitch_output.csv");
   log << "time,angle_cmd,angle_meas,q_cmd,q_meas,elavator\n";
 
   float theta_cmd = 0.0f;
