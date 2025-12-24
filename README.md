@@ -112,7 +112,7 @@ As you can see with the following plot, there was a step input and a ramp input 
 <img width="583" height="354" alt="Image" src="https://github.com/user-attachments/assets/bc7f2a1b-c746-4d82-a2ad-13fc85443753" />
 
 ## Repository Structure
-
+```
 .
 ├── src/
 │   └── control/
@@ -133,7 +133,7 @@ As you can see with the following plot, there was a step input and a ramp input 
 │
 ├── CMakeLists.txt
 └── README.md
-
+```
 ## Build Instructions
 
 ```bash
@@ -142,4 +142,4 @@ cd build
 cmake ..
 make
 ./sitl_main
-
+```
