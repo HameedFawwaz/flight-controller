@@ -13,16 +13,16 @@ int main()
 
   // Controller params
   PitchRateController::Params ctrl_params{
-    .kp = 50.0f,
-    .ki = 50.0f,
+    .kp = 5.0f,
+    .ki = 5.0f,
     .integrator_limit = 0.2f,
     .output_limit = 0.35f
   };
 
   PitchAngleController::Params angle_params{
-    .kp = 2.0f,
+    .kp = 5.0f,
     .ki = 0.0f,
-    .kd = 1.0f,
+    .kd = 0.0f,
     .output_limit = 1.5f
   };
 
@@ -35,8 +35,6 @@ int main()
   theta_cmd_profile.addStep(0.5f, 0.03f);
 
   theta_cmd_profile.addRamp(5.0f, -0.01f);
-
-  theta_cmd_profile.addSine(12.0f, 0.05f, 3.0f);
 
   theta_cmd_profile.enableNoise(0.0005f);
 
