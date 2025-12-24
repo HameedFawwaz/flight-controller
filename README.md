@@ -107,7 +107,7 @@ Performance metrics:
 
 ## Validation Plot
 
-As you can see with the following plot, there was a step input and a ramp input applied, with random (gaussian) noise to simulate IMU noise and other sources of noise. The measured angle tracks the commanded angle pretty well, behaving very nicely even when there is noise. You may notice under reaction with the step input, but this is intended as real vehicles would not immediately snap to an angle if there is a step input applied. 
+As you can see with the following plot, there was a step input and a ramp input applied, with random (gaussian) noise to simulate IMU noise and other sources of noise. The measured angle tracks the commanded angle pretty well, behaving very nicely even when there is noise. You may notice under reaction with the step input, but this is intended as real vehicles would not immediately snap to an angle if there is a step input applied. See docs/pitch_output.csv for the output.
 
 <img width="583" height="354" alt="Image" src="https://github.com/user-attachments/assets/bc7f2a1b-c746-4d82-a2ad-13fc85443753" />
 
