@@ -1,22 +1,26 @@
 #pragma once
 
-class PitchRatePlant
-{
+class PitchRatePlant {
 public:
-  struct Params {
-    float tau; // time constant [s]
-    float gain; // q_dot / elavator
-  };
+    struct Params {
+        float tau;
+        float gain;
+    };
 
-  explicit PitchRatePlant(const Params& params);
+    PitchRatePlant(const Params& params);
 
-  float update(float elevator_cmd, float dt);
+    void reset();
 
-  float getRate() const;
+    // ✅ Declaration
+    void update(float elevator_cmd, float dt);
 
-  void reset();
+    float getRate() const;
+    float getAngle() const;
 
 private:
-  Params params_;
-  float q_ = 0.0f;
+    Params params_;
+
+    float q_;
+    float theta_;
 };
+

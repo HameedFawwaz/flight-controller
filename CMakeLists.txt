@@ -10,6 +10,7 @@ include_directories(include)
 # Source files
 set(SOURCES
     src/control/pitch_rate_controller.cpp
+    src/control/pitch_angle_controller.cpp
     sim/plant.cpp
     sim/sitl_main.cpp
     sim/input_profile.cpp
